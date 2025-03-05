@@ -6,6 +6,7 @@ class SecondScreen extends StatefulWidget {
   DateTime firstDate = DateTime(2025, 1, 20); // variable con fecha por defecto
 
   @override
+  // ignore: library_private_types_in_public_api
   _SecondScreenState createState() => _SecondScreenState();
 }
 
@@ -87,8 +88,8 @@ class _SecondScreenState extends State<SecondScreen> {
                 Row(
                   children: [
                     Text(
-                      'Fecha: ' +
-                          '${(widget.dateUpdated ?? widget.firstDate).day}/${(widget.dateUpdated ?? widget.firstDate).month}/${(widget.dateUpdated ?? widget.firstDate).year}',
+                      'Fecha: '
+                      '${(widget.dateUpdated ?? widget.firstDate).day}/${(widget.dateUpdated ?? widget.firstDate).month}/${(widget.dateUpdated ?? widget.firstDate).year}',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
