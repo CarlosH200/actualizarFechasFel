@@ -10,6 +10,33 @@ class SecondScreen extends StatefulWidget {
   _SecondScreenState createState() => _SecondScreenState();
 }
 
+// Inicio clases para estilos de la Pantalla.
+class TextStyleApp {
+  // Estilo para textos
+  static const TextStyle textStyleResponse = TextStyle(
+    fontSize: 17,
+    color: Colors.black,
+  );
+  static const TextStyle textStyleTitle = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
+  static const TextStyle textStyleParrafo = TextStyle(
+    fontSize: 14.5,
+    color: Colors.black,
+  );
+}
+
+class DividerEspaciador {
+  static const Divider Espaciador = Divider(
+    color: Color(0xFFCFCFCF),
+    thickness: 1,
+    height: 20,
+  );
+}
+// Fin clases de estilo para la pantalla
+
 class _SecondScreenState extends State<SecondScreen> {
   // Función para seleccionar una fecha
   Future<void> _selectDate(BuildContext context) async {
@@ -64,22 +91,15 @@ class _SecondScreenState extends State<SecondScreen> {
               children: [
                 Row(
                   children: [
-                    const Text(
-                      'Id Doc Ref: ',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
+                    const Text('Id Doc Ref: ',
+                        style: TextStyleApp.textStyleTitle),
                     Text(
                       '3500002140001',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyleApp.textStyleResponse,
                     ),
                   ],
                 ),
-                const Divider(
-                  color: Color(0xFFCFCFCF),
-                  thickness: 1,
-                  height: 20,
-                ),
+                DividerEspaciador.Espaciador,
               ],
             ),
             Column(
@@ -88,13 +108,9 @@ class _SecondScreenState extends State<SecondScreen> {
                 Row(
                   children: [
                     Text(
-                      'Fecha: '
-                      '${(widget.dateUpdated ?? widget.firstDate).day}/${(widget.dateUpdated ?? widget.firstDate).month}/${(widget.dateUpdated ?? widget.firstDate).year}',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ), // Agrega el estilo si lo necesitas
-                    ),
+                        'Fecha: '
+                        '${(widget.dateUpdated ?? widget.firstDate).day}/${(widget.dateUpdated ?? widget.firstDate).month}/${(widget.dateUpdated ?? widget.firstDate).year}',
+                        style: TextStyleApp.textStyleTitle),
                     const Spacer(),
                     IconButton(
                       icon: const Icon(Icons.edit),
@@ -103,11 +119,7 @@ class _SecondScreenState extends State<SecondScreen> {
                     ),
                   ],
                 ),
-                const Divider(
-                  color: Color(0xFFCFCFCF),
-                  thickness: 1,
-                  height: 20,
-                ),
+                DividerEspaciador.Espaciador,
               ],
             ),
             Column(
@@ -117,20 +129,15 @@ class _SecondScreenState extends State<SecondScreen> {
                   children: [
                     const Text(
                       'Empresa: ',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyleApp.textStyleTitle,
                     ),
                     Text(
                       '(1) DEMOSOFT, S.A.',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyleApp.textStyleResponse,
                     ),
                   ],
                 ),
-                const Divider(
-                  color: Color(0xFFCFCFCF),
-                  thickness: 1,
-                  height: 20,
-                ),
+                DividerEspaciador.Espaciador,
               ],
             ),
             Column(
@@ -140,20 +147,15 @@ class _SecondScreenState extends State<SecondScreen> {
                   children: [
                     const Text(
                       'Estacion: ',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyleApp.textStyleTitle,
                     ),
                     Text(
                       '(1) CENTRAL',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyleApp.textStyleResponse,
                     ),
                   ],
                 ),
-                const Divider(
-                  color: Color(0xFFCFCFCF),
-                  thickness: 1,
-                  height: 20,
-                ),
+                DividerEspaciador.Espaciador,
               ],
             ),
             Column(
@@ -166,28 +168,22 @@ class _SecondScreenState extends State<SecondScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Tipo Documento:',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
+                        const Text('Tipo Documento:',
+                            style: TextStyleApp.textStyleTitle),
                         Text(
-                          '(3) Factura',
-                          style: TextStyle(fontSize: 16),
+                          '(3) FACTURA',
+                          style: TextStyleApp.textStyleResponse,
                         ),
                       ],
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Serie Documento:',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
+                        const Text('Serie Documento:',
+                            style: TextStyleApp.textStyleTitle),
                         Text(
                           '(1) FACT_DS',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyleApp.textStyleResponse,
                         ),
                       ],
                     ),
@@ -195,18 +191,10 @@ class _SecondScreenState extends State<SecondScreen> {
                 ),
               ],
             ),
-            const Divider(
-              color: Color(0xFFCFCFCF),
-              thickness: 1,
-              height: 15,
-            ),
+            DividerEspaciador.Espaciador,
             Text(
               'Datos FEL.',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const Divider(
-              thickness: 0,
-              height: 5,
+              style: TextStyleApp.textStyleTitle,
             ),
             Container(
               width: double.infinity,
@@ -224,37 +212,23 @@ class _SecondScreenState extends State<SecondScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'FE_Fecha: 12/02/2025 06:30 pm',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          Text(
-                            'FE_Numero: 3438363706',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          Text(
-                            'FE_Serie: E75E1155',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          Text(
-                            'FE_CAE: E75E1155-CCF1-443A-98BC-6BC3FB4D72A8',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                        ],
-                      ),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('FE_Fecha: 12/02/2025 06:30 pm',
+                                style: TextStyleApp.textStyleParrafo),
+                            Text('FE_Numero: 3438363706',
+                                style: TextStyleApp.textStyleParrafo),
+                            Text('FE_Serie: E75E1155',
+                                style: TextStyleApp.textStyleParrafo),
+                            Text('FE_CAE: E75E1155-CCF1-443A-98BC-6BC3FB4D72A8',
+                                style: TextStyleApp.textStyleParrafo),
+                          ]),
                     ],
                   ),
                 ],
               ),
             ),
-            const Divider(
-              color: Color(0xFFCFCFCF),
-              thickness: 1,
-              height: 20,
-            ),
-            const SizedBox(height: 0),
+            DividerEspaciador.Espaciador,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -267,20 +241,19 @@ class _SecondScreenState extends State<SecondScreen> {
                       children: [
                         const Text(
                           'Cliente:',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
+                          style: TextStyleApp.textStyleTitle,
                         ),
                         Text(
                           'Nit: C/F',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyleApp.textStyleResponse,
                         ),
                         Text(
                           'Nombre: Consumidor Final',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyleApp.textStyleResponse,
                         ),
                         Text(
                           'Direccion: Ciudad',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyleApp.textStyleResponse,
                         ),
                       ],
                     ),
@@ -288,12 +261,7 @@ class _SecondScreenState extends State<SecondScreen> {
                 ),
               ],
             ),
-            const Divider(
-              color: Color(0xFFCFCFCF),
-              thickness: 1,
-              height: 20,
-            ),
-            const SizedBox(height: 0),
+            DividerEspaciador.Espaciador,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -301,23 +269,18 @@ class _SecondScreenState extends State<SecondScreen> {
                   children: [
                     const Text(
                       'Vendedor: ',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyleApp.textStyleTitle,
                     ),
                     Text(
                       'VENDEDOR PRUEBA',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyleApp.textStyleParrafo,
                     ),
                   ],
                 ),
-                const Divider(
-                  color: Color(0xFFCFCFCF),
-                  thickness: 1,
-                  height: 15,
-                ),
+                DividerEspaciador.Espaciador,
                 Text(
                   'Productos:',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyleApp.textStyleTitle,
                 ),
                 const Divider(
                   thickness: 0,
@@ -343,19 +306,19 @@ class _SecondScreenState extends State<SecondScreen> {
                             children: [
                               const Text(
                                 'Efectivo (Venta)',
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyleApp.textStyleResponse,
                               ),
                               Text(
                                 'Monto: 100.00',
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyleApp.textStyleResponse,
                               ),
                               Text(
                                 'Diferencia: 0.00',
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyleApp.textStyleResponse,
                               ),
                               Text(
                                 'Pago Total: 100.00',
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyleApp.textStyleResponse,
                               ),
                             ],
                           ),
@@ -364,11 +327,7 @@ class _SecondScreenState extends State<SecondScreen> {
                     ],
                   ),
                 ),
-                const Divider(
-                  color: Color(0xFFCFCFCF),
-                  thickness: 1,
-                  height: 15,
-                ),
+                DividerEspaciador.Espaciador,
                 Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(5),
@@ -388,11 +347,11 @@ class _SecondScreenState extends State<SecondScreen> {
                           children: const [
                             Text(
                               'Sub-Total:',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyleApp.textStyleResponse,
                             ),
                             Text(
                               '100.00',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyleApp.textStyleResponse,
                             ),
                           ],
                         ),
@@ -401,11 +360,11 @@ class _SecondScreenState extends State<SecondScreen> {
                           children: const [
                             Text(
                               '(+) Cargo:',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyleApp.textStyleResponse,
                             ),
                             Text(
                               '0.00',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyleApp.textStyleResponse,
                             ),
                           ],
                         ),
@@ -414,29 +373,25 @@ class _SecondScreenState extends State<SecondScreen> {
                           children: const [
                             Text(
                               '(-) Descuento:',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyleApp.textStyleResponse,
                             ),
                             Text(
                               '0.00',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyleApp.textStyleResponse,
                             ),
                           ],
                         ),
-                        const Divider(
-                          color: Color(0xFFCFCFCF),
-                          thickness: 1,
-                          height: 15,
-                        ),
+                        DividerEspaciador.Espaciador,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
                             Text(
                               'Total:',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyleApp.textStyleResponse,
                             ),
                             Text(
                               '100.00',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyleApp.textStyleResponse,
                             ),
                           ],
                         ),

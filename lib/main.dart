@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mi_app_flutter/detalle.dart';
+import 'package:mi_app_flutter/models/series_model.dart';
 import 'package:mi_app_flutter/services/documento_service.dart';
 import 'package:mi_app_flutter/models/documento_model.dart';
+import 'package:mi_app_flutter/services/serie_service.dart';
 
 void main() => runApp(const MyApp());
 
@@ -30,15 +32,17 @@ class Inicio extends StatefulWidget {
 
 class _InicioState extends State<Inicio> {
   String dropdownValue1 = 'Factura';
-  String dropdownValue2 = 'Serie A';
+  String? dropdownValue2;
   DateTime? selectedDate1;
   DateTime? selectedDate2;
   late Future<List<DocumentoModel>> documentos;
+  late Future<List<Serie>> series;
 
   @override
   void initState() {
     super.initState();
     documentos = DocumentoService().getDocumentos();
+    series = SeriesService().getSeries();
   }
 
   Future<void> _selectDate(BuildContext context, int buttonIndex) async {
@@ -117,20 +121,35 @@ class _InicioState extends State<Inicio> {
                 ),
                 const SizedBox(width: 20),
                 Expanded(
-                  child: DropdownButton<String>(
-                    isExpanded: true,
-                    value: dropdownValue2,
-                    items: <String>['Serie A', 'Serie B', 'Serie C']
-                        .map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue2 = newValue!;
-                      });
+                  child: FutureBuilder<List<Serie>>(
+                    future: series,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else if (snapshot.data == null ||
+                          snapshot.data!.isEmpty) {
+                        return const Text('No hay series disponibles');
+                      } else {
+                        List<Serie> seriesList = snapshot.data!;
+                        dropdownValue2 ??= seriesList.first.descripcion;
+                        return DropdownButton<String>(
+                          isExpanded: true,
+                          value: dropdownValue2,
+                          items: seriesList.map((serie) {
+                            return DropdownMenuItem<String>(
+                              value: serie.descripcion,
+                              child: Text(serie.descripcion),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue2 = newValue;
+                            });
+                          },
+                        );
+                      }
                     },
                   ),
                 ),
@@ -181,6 +200,7 @@ class _InicioState extends State<Inicio> {
               ],
             ),
             const SizedBox(height: 25),
+            // Aquí integramos el FutureBuilder para mostrar los documentos
             Expanded(
               child: FutureBuilder<List<DocumentoModel>>(
                 future: documentos,
@@ -267,13 +287,6 @@ class _InicioState extends State<Inicio> {
                                     color: Color.fromARGB(255, 215, 215, 215)),
                                 Text(
                                   'Fecha Certificación: ${docs[index].fEFechaCertificacion}',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  'FE_Numero: ${docs[index].fENumeroDocumento}',
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                       fontSize: 15,
